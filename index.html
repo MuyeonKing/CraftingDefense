@@ -2,15 +2,36 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>장비 제작 게임</title>
-    <style>
-      html, body { margin: 0; padding: 0; height: 100%; background: #111; overflow: hidden; }
-      #game { width: 100%; height: 100%; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#14161b" />
+    <title>CraftingDefense</title>
   </head>
   <body>
-    <div id="game"></div>
+    <div id="app">
+      <main id="screens">
+        <section class="screen" data-screen="battle">
+          <div id="game"></div>
+        </section>
+        <section class="screen" data-screen="equip" hidden>
+          <h2>장비</h2>
+          <p class="placeholder">장비창은 5단계에서 구현합니다.</p>
+        </section>
+        <section class="screen" data-screen="craft" hidden>
+          <h2>제작</h2>
+          <p class="placeholder">제작 화면은 4단계에서 구현합니다.</p>
+        </section>
+        <section class="screen" data-screen="settings" hidden>
+          <h2>설정</h2>
+          <p class="placeholder">저장·불러오기는 6단계에서 구현합니다.</p>
+        </section>
+      </main>
+      <nav id="tabbar">
+        <button type="button" data-tab="battle" class="active">전투</button>
+        <button type="button" data-tab="equip">장비</button>
+        <button type="button" data-tab="craft">제작</button>
+        <button type="button" data-tab="settings">설정</button>
+      </nav>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
