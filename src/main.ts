@@ -1,16 +1,14 @@
-import Phaser from 'phaser';
-import { BootScene } from './scenes/BootScene';
+import './style.css';
+import { createGame } from './game/createGame';
+import { setupRouter } from './ui/router';
 
-const config: Phaser.Types.Core.GameConfig = {
-  type: Phaser.AUTO,
-  parent: 'game',
-  backgroundColor: '#1a1a1a',
-  scale: {
-    mode: Phaser.Scale.RESIZE,
-    width: window.innerWidth,
-    height: window.innerHeight,
-  },
-  scene: [BootScene],
-};
+const container = document.getElementById('game');
+if (!container) throw new Error('#game 요소를 찾을 수 없습니다.');
 
-new Phaser.Game(config);
+const game = createGame(container);
+
+setupRouter((screen) => {
+  // 전투 화면이 아닐 때는 게임 루프를 멈춰 배터리 소모를 줄입니다.
+  if (screen === 'battle') game.loop.wake();
+  else game.loop.sleep();
+});
