@@ -165,3 +165,48 @@ table.tiers th { color: var(--muted); font-weight: 400; }
 .bag-tip .tip-name.kind-talisman { color: #c7b08a; }
 .bag-tip .tip-meta { font-size: 12px; color: var(--muted); margin: 2px 0 6px; }
 .bag-tip .tip-desc { font-size: 14px; line-height: 1.5; }
+
+/* ---------- 장비 생성 테스트 ---------- */
+.ilvl-row { display: block; margin: 4px 0 12px; font-size: 14px; color: var(--muted); }
+.ilvl-row b { color: var(--text); }
+.ilvl-row input { width: 100%; margin-top: 6px; accent-color: var(--gold); }
+
+button.primary {
+  width: 100%;
+  height: 46px;
+  border: none;
+  border-radius: 10px;
+  background: var(--gold);
+  color: #1a1a1a;
+  font: inherit;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+/* ---------- 아이템 툴팁 (PoE 스타일) ---------- */
+.item-tip {
+  --rc: #c8c8c8;
+  border: 1px solid var(--rc);
+  border-radius: 6px;
+  background: #0b0c10;
+  overflow: hidden;
+  text-align: center;
+}
+.item-tip.rarity-magic { --rc: #8888ff; }
+.item-tip.rarity-rare { --rc: #e6d35a; }
+.item-tip.rarity-legendary { --rc: #e2803a; }
+
+.it-head {
+  padding: 8px 10px;
+  background: color-mix(in srgb, var(--rc) 18%, #0b0c10);
+  border-bottom: 1px solid var(--rc);
+}
+.it-name { color: var(--rc); font-weight: 700; font-size: 17px; }
+.it-sub { color: var(--rc); opacity: 0.8; font-size: 12px; margin-top: 2px; }
+.it-body { padding: 10px; font-size: 14px; }
+.it-ilvl { color: var(--muted); font-size: 13px; }
+.it-sep { height: 1px; margin: 8px 20%; background: color-mix(in srgb, var(--rc) 60%, transparent); }
+.it-implicit { color: #b9c3d6; }
+.it-mod { color: #8f9fff; margin: 3px 0; }
+.it-mod .it-tag { display: block; font-size: 11px; color: var(--muted); }
+.it-mod.fractured { color: #c9a66b; }
