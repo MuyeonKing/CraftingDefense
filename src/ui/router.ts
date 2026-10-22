@@ -1,6 +1,6 @@
-export type ScreenId = 'battle' | 'equip' | 'craft' | 'settings';
+export type ScreenId = 'equip' | 'bag' | 'home' | 'battle' | 'settings';
 
-export function setupRouter(onChange: (screen: ScreenId) => void): void {
+export function setupRouter(initial: ScreenId, onChange: (screen: ScreenId) => void): void {
   const tabs = document.querySelectorAll<HTMLButtonElement>('#tabbar button');
   const screens = document.querySelectorAll<HTMLElement>('.screen');
 
@@ -17,4 +17,6 @@ export function setupRouter(onChange: (screen: ScreenId) => void): void {
   tabs.forEach((btn) => {
     btn.addEventListener('click', () => show(btn.dataset.tab as ScreenId));
   });
+
+  show(initial);
 }
