@@ -69,3 +69,49 @@ html, body {
   color: var(--gold);
   font-weight: 700;
 }
+
+/* ---------- 공통 카드·목록 ---------- */
+.screen h3 { margin: 18px 0 8px; font-size: 15px; color: var(--muted); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.card .name { font-weight: 700; }
+.card .meta { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.card .desc { font-size: 14px; margin-top: 4px; }
+.card .implicit { font-size: 14px; margin-top: 6px; color: #b9c3d6; }
+.card .row { display: flex; justify-content: space-between; gap: 8px; }
+.card .count { color: var(--gold); font-weight: 700; white-space: nowrap; }
+
+details.card summary { list-style: none; cursor: pointer; }
+details.card summary::-webkit-details-marker { display: none; }
+details.card summary .name,
+details.card summary .meta { display: block; }
+
+table.tiers { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+table.tiers th, table.tiers td { padding: 5px 4px; border-top: 1px solid var(--line); text-align: left; }
+table.tiers th { color: var(--muted); font-weight: 400; }
+
+/* ---------- 설정: 탭·필터 ---------- */
+.data-status { font-size: 13px; padding: 8px 10px; border-radius: 8px; margin-bottom: 12px; }
+.data-status.ok { background: #1c2b22; color: #7fd6a0; }
+.data-status.bad { background: #3a1d1d; color: #ff9a9a; }
+
+.seg { display: flex; gap: 6px; margin-bottom: 10px; }
+.seg button {
+  flex: 1; height: 40px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--muted); font: inherit;
+}
+.seg button.on { color: var(--bg); background: var(--gold); border-color: var(--gold); font-weight: 700; }
+
+.chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+.chips button {
+  flex: none; height: 34px; padding: 0 12px; border-radius: 17px;
+  border: 1px solid var(--line); background: none; color: var(--muted); font: inherit; font-size: 14px;
+}
+.chips button.on { color: var(--gold); border-color: var(--gold); }
