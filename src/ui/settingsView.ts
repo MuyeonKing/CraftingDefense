@@ -91,7 +91,9 @@ function basesHtml(slot: SlotId | 'all'): string {
       <div class="card">
         <div class="name">${b.stage}단계 · ${esc(b.name)}</div>
         <div class="meta">아이템 레벨 ${b.ilvl} 이상</div>
-        <div class="implicit">${b.implicits.map((i) => esc(formatText(i.text, i.values.map(String)))).join('<br>')}</div>
+        <div class="implicit">${b.implicits.length
+          ? b.implicits.map((i) => esc(formatText(i.text, i.values.map(String)))).join('<br>')
+          : '기본 능력치 없음'}</div>
       </div>`).join('')}
   `).join('');
 }
