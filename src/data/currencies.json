@@ -1,0 +1,13 @@
+[
+  {"id": "transmutation", "name": "Orb of Transmutation", "source": "poe2", "targets": ["normal"], "description": "일반 장비를 마법으로 승급하고 옵션 1개를 부여합니다."},
+  {"id": "augmentation", "name": "Orb of Augmentation", "source": "poe2", "targets": ["magic"], "description": "마법 장비에 옵션 1개를 추가합니다."},
+  {"id": "regal", "name": "Regal Orb", "source": "poe2", "targets": ["magic"], "description": "마법 장비를 희귀로 승급하고, 기존 옵션을 유지한 채 옵션 1개를 추가합니다."},
+  {"id": "alchemy", "name": "Orb of Alchemy", "source": "poe2", "targets": ["normal"], "description": "일반 장비를 희귀로 승급하고 옵션 4개를 부여합니다."},
+  {"id": "chaos", "name": "Chaos Orb", "source": "poe2", "targets": ["rare", "legendary"], "description": "무작위 옵션 1개를 제거하고 새 옵션 1개를 추가합니다."},
+  {"id": "exalted", "name": "Exalted Orb", "source": "poe2", "targets": ["rare", "legendary"], "description": "희귀·전설 장비에 옵션 1개를 추가합니다."},
+  {"id": "annulment", "name": "Orb of Annulment", "source": "poe2", "targets": ["magic", "rare", "legendary"], "description": "무작위 옵션 1개를 제거합니다."},
+  {"id": "divine", "name": "Divine Orb", "source": "poe2", "targets": ["magic", "rare", "legendary"], "description": "옵션 종류는 유지하고 수치만 다시 굴립니다."},
+  {"id": "alteration", "name": "Orb of Alteration", "source": "poe1", "targets": ["magic"], "description": "마법 장비의 옵션을 모두 다시 굴립니다."},
+  {"id": "scouring", "name": "Orb of Scouring", "source": "poe1", "targets": ["magic", "rare", "legendary"], "description": "모든 옵션을 제거하고 일반 장비로 되돌립니다."},
+  {"id": "legendary", "name": "전설 승급 재화 (가칭)", "source": "new", "targets": ["rare"], "description": "희귀 장비를 전설로 승급하고, 기존 옵션을 유지한 채 옵션 1개를 추가합니다."}
+]
