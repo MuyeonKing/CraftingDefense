@@ -1,9 +1,14 @@
 import {
-  BASES, CATEGORY_NAMES, CURRENCIES, MODS, SLOTS, SLOT_NAMES,
-  formatText, validateData, valueParts, type SlotId,
+  BASES, CATEGORY_NAMES, CURRENCIES, MODS, RARITY_NAMES, SLOTS, SLOT_NAMES,
+  formatText, validateData, valueParts, type Rarity, type SlotId,
 } from '../data';
+import { generateItem } from '../game/item';
+import { itemTooltip } from './itemTooltip';
 
-type Tab = 'mods' | 'bases';
+type Tab = 'mods' | 'bases' | 'gen';
+
+// 장비 생성 테스트 설정 (탭을 바꿔도 유지)
+const gen = { rarity: 'rare' as Rarity, ilvl: 40, result: '' };
 
 /** 설정 화면: 데이터 확인용 옵션 풀·베이스 보기 */
 export function renderSettings(root: HTMLElement): void {
@@ -21,6 +26,7 @@ export function renderSettings(root: HTMLElement): void {
     <div class="seg" data-role="tab">
       <button type="button" data-v="mods">옵션 풀</button>
       <button type="button" data-v="bases">베이스</button>
+      <button type="button" data-v="gen">장비 생성</button>
     </div>
     <div class="chips" data-role="slot"></div>
     <div data-role="list"></div>
@@ -37,7 +43,12 @@ export function renderSettings(root: HTMLElement): void {
   const draw = () => {
     tabEl.querySelectorAll('button').forEach((b) => b.classList.toggle('on', b.dataset.v === tab));
     slotEl.querySelectorAll('button').forEach((b) => b.classList.toggle('on', b.dataset.v === slot));
-    listEl.innerHTML = tab === 'mods' ? modsHtml(slot) : basesHtml(slot);
+    if (tab === 'gen') {
+      listEl.innerHTML = genHtml(slot);
+      bindGen(listEl, () => slot, draw);
+    } else {
+      listEl.innerHTML = tab === 'mods' ? modsHtml(slot) : basesHtml(slot);
+    }
   };
 
   tabEl.addEventListener('click', (e) => {
@@ -96,6 +107,40 @@ function basesHtml(slot: SlotId | 'all'): string {
           : '기본 능력치 없음'}</div>
       </div>`).join('')}
   `).join('');
+}
+
+function genHtml(slot: SlotId | 'all'): string {
+  const rarities = Object.keys(RARITY_NAMES) as Rarity[];
+  return `
+    <h3>테스트 장비 생성 · ${slot === 'all' ? '부위 무작위' : SLOT_NAMES[slot]}</h3>
+    <div class="seg" data-role="rarity">
+      ${rarities.map((r) => `<button type="button" data-v="${r}" class="${r === gen.rarity ? 'on' : ''}">${RARITY_NAMES[r]}</button>`).join('')}
+    </div>
+    <label class="ilvl-row">
+      <span>아이템 레벨 <b data-role="ilvl-val">${gen.ilvl}</b></span>
+      <input type="range" min="1" max="50" value="${gen.ilvl}" data-role="ilvl">
+    </label>
+    <button type="button" class="primary" data-role="roll">장비 생성</button>
+    <div data-role="result">${gen.result || '<p class="placeholder">버튼을 누르면 무작위 장비가 생성됩니다.</p>'}</div>
+  `;
+}
+
+function bindGen(el: HTMLElement, getSlot: () => SlotId | 'all', redraw: () => void): void {
+  el.querySelector('[data-role="rarity"]')!.addEventListener('click', (e) => {
+    const v = (e.target as HTMLElement).closest('button')?.dataset.v;
+    if (v) { gen.rarity = v as Rarity; redraw(); }
+  });
+  const range = el.querySelector<HTMLInputElement>('[data-role="ilvl"]')!;
+  range.addEventListener('input', () => {
+    gen.ilvl = Number(range.value);
+    el.querySelector('[data-role="ilvl-val"]')!.textContent = range.value;
+  });
+  el.querySelector('[data-role="roll"]')!.addEventListener('click', () => {
+    const chosen = getSlot();
+    const slot = chosen === 'all' ? SLOTS[Math.floor(Math.random() * SLOTS.length)] : chosen;
+    gen.result = itemTooltip(generateItem({ slot, ilvl: gen.ilvl, rarity: gen.rarity }));
+    el.querySelector('[data-role="result"]')!.innerHTML = gen.result;
+  });
 }
 
 function esc(s: string): string {
