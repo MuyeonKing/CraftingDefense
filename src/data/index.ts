@@ -45,12 +45,17 @@ export interface BaseDef {
   implicits: Implicit[];
 }
 
+export type CurrencyKind = 'stone' | 'essence' | 'talisman';
+export type IconShape = 'round' | 'oval' | 'hex' | 'diamond' | 'star' | 'shard' | 'crystal' | 'talisman';
+
 export interface CurrencyDef {
   id: string;
+  kind: CurrencyKind;
   name: string;
-  source: 'poe1' | 'poe2' | 'new';
-  targets: Rarity[];
+  targets: Rarity[];  // 사용할 수 있는 장비 등급
   description: string;
+  modGroup?: string;  // 정수: 보장하는 옵션 그룹
+  icon: { shape: IconShape; color: string; glyph?: string };
 }
 
 export const SLOT_NAMES: Record<SlotId, string> = {
@@ -110,6 +115,13 @@ export function validateData(): string[] {
     if (ids.has(mod.id)) errors.push(`옵션 ID 중복: ${mod.id}`);
     ids.add(mod.id);
     if (mod.tiers.length === 0) errors.push(`티어 없음: ${mod.id}`);
+  }
+
+  const groups = new Set(MODS.map((m) => m.group));
+  for (const c of CURRENCIES) {
+    if (c.kind === 'essence' && (!c.modGroup || !groups.has(c.modGroup))) {
+      errors.push(`정수 보장 옵션 없음: ${c.name}`);
+    }
   }
 
   for (const slot of SLOTS) {

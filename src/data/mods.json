@@ -150,6 +150,36 @@
     ]
   },
   {
+    "id": "ele_inc_weapon",
+    "type": "prefix",
+    "group": "ele_inc",
+    "category": "attack",
+    "name": "원소 피해 {0}% 증가",
+    "slots": ["weapon"],
+    "tiers": [
+      {"tier": 5, "ilvl": 1, "weight": 1000, "values": [[5, 9]]},
+      {"tier": 4, "ilvl": 10, "weight": 800, "values": [[10, 24]]},
+      {"tier": 3, "ilvl": 20, "weight": 600, "values": [[25, 44]]},
+      {"tier": 2, "ilvl": 30, "weight": 400, "values": [[45, 64]]},
+      {"tier": 1, "ilvl": 40, "weight": 200, "values": [[65, 79]]}
+    ]
+  },
+  {
+    "id": "ele_inc_acc",
+    "type": "prefix",
+    "group": "ele_inc",
+    "category": "attack",
+    "name": "원소 피해 {0}% 증가",
+    "slots": ["offhand", "belt", "amulet", "ring"],
+    "tiers": [
+      {"tier": 5, "ilvl": 1, "weight": 1000, "values": [[5, 9]]},
+      {"tier": 4, "ilvl": 10, "weight": 800, "values": [[10, 14]]},
+      {"tier": 3, "ilvl": 20, "weight": 600, "values": [[15, 19]]},
+      {"tier": 2, "ilvl": 30, "weight": 400, "values": [[20, 24]]},
+      {"tier": 1, "ilvl": 40, "weight": 200, "values": [[25, 30]]}
+    ]
+  },
+  {
     "id": "life",
     "type": "prefix",
     "group": "life",
@@ -252,21 +282,6 @@
       {"tier": 3, "ilvl": 20, "weight": 600, "values": [[18, 22]]},
       {"tier": 2, "ilvl": 30, "weight": 400, "values": [[23, 27]]},
       {"tier": 1, "ilvl": 40, "weight": 200, "values": [[28, 35]]}
-    ]
-  },
-  {
-    "id": "accuracy",
-    "type": "suffix",
-    "group": "accuracy",
-    "category": "attack",
-    "name": "명중 +{0}",
-    "slots": ["helmet", "gloves", "offhand", "amulet", "ring"],
-    "tiers": [
-      {"tier": 5, "ilvl": 1, "weight": 1000, "values": [[10, 40]]},
-      {"tier": 4, "ilvl": 10, "weight": 800, "values": [[41, 80]]},
-      {"tier": 3, "ilvl": 20, "weight": 600, "values": [[81, 130]]},
-      {"tier": 2, "ilvl": 30, "weight": 400, "values": [[131, 190]]},
-      {"tier": 1, "ilvl": 40, "weight": 200, "values": [[191, 260]]}
     ]
   },
   {
